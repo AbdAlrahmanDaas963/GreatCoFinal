@@ -66,9 +66,8 @@ function DrowItems(arrayItems,i=0) {
       workItems.innerHTML += items;
     }else if (i==1){
       let items = `
-            <div class="work-main-item col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                <div class="layer" title="view photo"><span class="project-title">${ele.name}</span></div>
-                <img class="f1" src="${ele.imageURL[0]}.jpg" alt="" srcset="">
+            <div class="work-main-item col-sm-12 col-md-6 col-lg-4 col-xl-3" style="background:white;color:black">
+                <div class='empty'>This page is curenrly empty</div>
             </div>
         `;
       workItems.innerHTML += items;

@@ -129,7 +129,7 @@ let workData = [
   {
     id: 20,
     name: "Empty",
-    imageURL: ['images/Empty/khaby-lame'],
+    imageURL: [],
     type: "Resturants",
   },
   
@@ -137,7 +137,7 @@ let workData = [
   {
     id: 21,
     name: "Empty",
-    imageURL: ['images/Empty/khaby-lame'],
+    imageURL: [],
     type: "Constructions",
   },
 
@@ -145,7 +145,7 @@ let workData = [
   {
     id: 22,
     name: "Empty",
-    imageURL: ['images/Empty/khaby-lame'],
+    imageURL: [],
     type: "General Contracting",
   },
 ];
