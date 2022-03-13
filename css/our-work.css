@@ -10,7 +10,7 @@ body {
 .work-contant {
   width: 100%;
   height: fit-content;
-  padding: 120px 0px 0px 0px;
+  padding: 170px 0px 0px 0px;
   top: -75px;
   position: relative;
 }
@@ -197,7 +197,7 @@ body {
   left: 0;
   right: 0;
   transition: visibility 0.5s, opacity 0.5s;
-  cursor:pointer;
+  cursor: pointer;
 }
 .work-main-item:hover .layer {
   visibility: visible;
