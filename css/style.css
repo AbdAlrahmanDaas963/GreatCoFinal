@@ -1577,6 +1577,11 @@ a {
 .footer_contact span:nth-child(2n) {
   cursor: copy;
 }
+.footer_contact span p {
+  white-space: nowrap;
+  font-weight: bold;
+  margin: 0;
+}
 .powred-by {
   width: 100%;
   text-align: center;
