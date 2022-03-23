@@ -18,22 +18,58 @@ window.addEventListener('load',function(){
   var full_url = document.URL; // Get current url
   var url_array = full_url.split('?id=') // Split the string into an array with / as separator
   var last_segment = url_array[url_array.length-1];  // Get the last part of the array (-1)
-
+  
   if (last_segment==1 || last_segment==2 || last_segment==3 || last_segment==4 || last_segment==5 || last_segment==6){
-    filterData(parseInt(last_segment));
+    setTimeout(() => {
+      filterData(parseInt(last_segment));
+    }, 50);
+    clickItems.forEach((e)=>{
+      e.style.backgroundColor="#fff";
+      e.style.color="#065992";
+    });
+    clickItems[last_segment].style.backgroundColor="#065992";
+    clickItems[last_segment].style.color="#fff";
   }
+
+
+
+  document.querySelector('.more').addEventListener('click',function(){
+    if (document.querySelector('.more-close').style.display!='block'){
+      document.querySelector('.more-text').style.display='none';
+      document.querySelector('.more-close').style.display='block';
+      document.querySelector('.work-navItem-ul').style.height='420px';
+    }else{
+      document.querySelector('.more-text').style.display='block';
+      document.querySelector('.more-close').style.display='none';
+      document.querySelector('.work-navItem-ul').style.height='0px';
+    }
+  });
+
+  window.addEventListener('resize',function(){
+    console.log(window.innerWidth);
+    if (window.innerWidth>'720'){
+      document.querySelector('.work-navItem-ul').style.height='fit-content';
+    }else{
+      document.querySelector('.work-navItem-ul').style.height='0px';
+    }
+  });
 });
 
 // resume work here
 clickItems.forEach((ele, i) => {
   ele.addEventListener("click", () => {
+    filterData(i);
+    if (window.innerWidth<'720'){
+      document.querySelector('.work-navItem-ul').style.height='0px';
+      document.querySelector('.more-text').style.display='block';
+      document.querySelector('.more-close').style.display='none';
+    }
     clickItems.forEach((e)=>{
       e.style.backgroundColor="#fff";
       e.style.color="#065992";
     });
     ele.style.backgroundColor="#065992";
     ele.style.color="#fff";
-    filterData(i);
   });
 });
 
@@ -66,7 +102,7 @@ function DrowItems(arrayItems,i=0) {
       workItems.innerHTML += items;
     }else if (i==1){
       let items = `
-            <div class="work-main-item col-sm-12 col-md-6 col-lg-4 col-xl-3" style="background:white;color:black">
+            <div class="work-main-item empty col-sm-12 col-md-6 col-lg-4 col-xl-3" status='empty'>
                 <div class='empty'>This page is curenrly empty</div>
             </div>
         `;
@@ -77,23 +113,22 @@ function DrowItems(arrayItems,i=0) {
   item_image.forEach((ele, i) => {
     ele.addEventListener("click", () => {
       let itemImage = ele.lastElementChild;
-      let img = itemImage.getAttribute("src");
-      console.log(img);
-      item_view.style.visibility = "visible";
-      item_view.style.opacity = "1";
-      item_view.style.position = "sticky";
-      var itemData = workData.find((ele) => ele.id == i);
-      item_view.style.backgroundImage =
-        "url('" + img + "')";
+      if (ele.getAttribute('status')!='empty'){
+        let img = itemImage.getAttribute("src");
+        item_view.style.visibility = "visible";
+        item_view.style.opacity = "1";
+        item_view.style.position = "sticky";
+        var itemData = workData.find((ele) => ele.id == i);
+        item_view.style.backgroundImage ="url('" + img + "')";
+      }
     });
   });
 }
 
 
 function filterData(i){
-  console.log(i);
   clickItems.forEach((ele) => {
-    switch (i) {
+    switch (i){
       case 0:
         DrowItems(workData);
         break;
@@ -122,3 +157,6 @@ function filterData(i){
     }
   });
 }
+
+
+
